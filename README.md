@@ -433,3 +433,251 @@ $a = "We are the so-called "Vikings" from the north.";
 // Same as
 $a = "We are the so-called \"Vikings\" from the north.";
 ```
+
+### Numbers
+
+There are three main numeric types in PHP:
+
+* Integer
+
+* Float
+
+* Number Strings
+
+In addition, PHP has two more data types used for numbers:
+
+* Infinity
+
+* NaN
+
+```php
+$a = 5; // int
+$b = 5.34; // float
+$c = "25"; // number string
+```
+
+#### Integers
+
+Here are some rules for integers
+
+* An integer must have at least one digit
+
+* An integer must NOT have a decimal point
+
+* An integer can be either positive or negative
+
+* Integers can be specified in three formats: decimal (base 10), hexadecimal (base 16 - prefixed with 0x), octal (base 8 - prefixed with 0) or binary (base 2 - prefixed with 0b)
+
+PHP has the following predefined constants for integers:
+
+* PHP_INT_MAX - The largest integer supported
+
+* PHP_INT_MIN - The smallest integer supported
+
+* PHP_INT_SIZE -  The size of an integer in bytes
+
+PHP has the following functions to check if the type of a variable is integer : 
+
+* is_int()
+
+* is_integer()
+
+* is_long()
+
+```php
+// Check if the type of a variable is integer
+$a = 1234;
+var_dump(is_int($a)); // true
+
+$a = 12.34;
+var_dump(is_int($a)); // false
+```
+
+#### Floats
+
+PHP has the following predefined constants for floats (from PHP 7.2):
+
+* PHP_FLOAT_MAX - The largest representable floating point number
+
+* PHP_FLOAT_MIN - The smallest representable positive floating point number
+
+* PHP_FLOAT_DIG - The number of decimal digits that can be rounded into a float and back without precision loss
+
+* PHP_FLOAT_EPSILON - The smallest representable positive number x, so that x + 1.0 != 1.0
+
+PHP has the following functions to check if the type of a variable is float:
+
+* is_float()
+
+* is_double()
+
+```php
+$x = 10.365;
+var_dump(is_float($x)); // true
+```
+
+#### Infinity
+
+PHP has the following functions to check if a numeric value is finite or infinite:
+
+* is_finite()
+
+* is_infinite()
+
+```php
+// finite
+$number1 = 1234.56; // số hữu hạn
+$number2 = log(0); // -INF không phải là số hữu hạn
+
+if (is_finite($number1)) {
+    echo "$number1 là một số hữu hạn.\n";
+} else {
+    echo "$number1 không phải là một số hữu hạn.\n";
+}
+
+if (is_finite($number2)) {
+    echo "$number2 là một số hữu hạn.\n";
+} else {
+    echo "$number2 không phải là một số hữu hạn.\n";
+}
+
+// infinite
+$number1 = 1.0 / 0.0; // INF là số vô cực
+$number2 = 1234.56; // không phải là số vô cực
+
+if (is_infinite($number1)) {
+    echo "$number1 là một số vô cực.\n";
+} else {
+    echo "$number1 không phải là một số vô cực.\n";
+}
+
+if (is_infinite($number2)) {
+    echo "$number2 là một số vô cực.\n";
+} else {
+    echo "$number2 không phải là một số vô cực.\n";
+}
+```
+
+#### NaN
+
+NaN stands for Not a Number.
+
+PHP has the following functions to check if a value is not a number:
+
+* is_nan()
+
+```php
+$number1 = acos(1.01); // NaN, vì cos^-1 của giá trị lớn hơn 1 không tồn tại
+$number2 = sqrt(-1); // NaN, vì không thể lấy căn bậc hai của số âm
+$number3 = 1234.56; // một số thông thường
+
+if (is_nan($number1)) {
+    echo "number1 là NaN.\n";
+} else {
+    echo "number1 không phải là NaN.\n";
+}
+
+if (is_nan($number2)) {
+    echo "number2 là NaN.\n";
+} else {
+    echo "number2 không phải là NaN.\n";
+}
+
+if (is_nan($number3)) {
+    echo "number3 là NaN.\n";
+} else {
+    echo "number3 không phải là NaN.\n";
+}
+```
+
+#### Numerical Strings
+
+The PHP is_numeric() function can be used to find whether a variable is numeric. The function returns true if the variable is a number or a numeric string, false otherwise.
+
+```php
+$x = 5985;
+var_dump(is_numeric($x)); // true
+
+$x = "5985";
+var_dump(is_numeric($x)); // true
+$x = "59.85" + 100;
+var_dump(is_numeric($x)); // true
+
+$x = "Hello";
+var_dump(is_numeric($x)); // false
+```
+
+#### Casting Strings and Floats to Integers
+
+Sometimes you need to cast a numerical value into another data type.
+
+The (int), (integer), and intval() functions are often used to convert a value to an integer.
+
+```php
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast; // 23465
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x; // 23465
+echo $int_cast;
+```
+
+### Math
+
+#### pi() Function
+
+The pi() function returns the value of PI:
+
+```php
+echo(pi()); // 3.1415926535898
+```
+
+#### min() and max() Functions
+
+The min() and max() functions can be used to find the lowest or highest value in a list of arguments:
+
+```php
+echo(min(0, 150, 30, 20, -8, -200)); // -200
+echo(max(0, 150, 30, 20, -8, -200)); // 150
+```
+
+#### abs() Function
+
+The abs() function returns the absolute (positive) value of a number:
+
+```php
+echo(abs(-6.7)); // 6.7
+```
+
+#### sqrt() Function
+
+The sqrt() function returns the square root of a number:
+
+```php
+echo(sqrt(64)); // 8
+echo(sqrt(0)); // 0
+echo(sqrt(1)); // 1
+echo(sqrt(9)); // 3
+```
+
+#### round() Function
+
+The round() function rounds a floating-point number to its nearest integer:
+
+```php
+echo(round(0.60)); // 1
+echo(round(0.50)); // 1
+echo(round(0.49)); // 0
+```
+
+#### Random Numbers
+
+The rand() function generates a random number:
+
+```php
+echo(rand());
+echo(rand(10, 100));
+```
