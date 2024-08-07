@@ -681,3 +681,319 @@ The rand() function generates a random number:
 echo(rand());
 echo(rand(10, 100));
 ```
+
+### Casting
+
+Change Data Type
+
+Casting in PHP is done with these statements:
+
+* (string) - Converts to data type String
+
+* (int) - Converts to data type Integer
+
+* (float) - Converts to data type Float
+
+* (bool) - Converts to data type Boolean
+
+* (array) - Converts to data type Array
+
+* (object) - Converts to data type Object
+
+* (unset) - Converts to data type NULL
+
+#### Cast to String
+
+To cast to string, use the (string) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "hello"; // String
+$d = true;    // Boolean
+$e = NULL;    // NULL
+
+$a = (string) $a;
+$b = (string) $b;
+$c = (string) $c;
+$d = (string) $d;
+$e = (string) $e;
+
+var_dump($a); // string(1) "5"
+var_dump($b); // string(4) "5.34"
+var_dump($c); // string(5) "hello"
+var_dump($d); // string(1) "1"
+var_dump($e); // string(0) ""
+```
+
+#### Cast to Integer
+
+To cast to integer, use the (int) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "25 kilometers"; // String
+$d = "kilometers 25"; // String
+$e = "hello"; // String
+$f = true;    // Boolean
+$g = NULL;    // NULL
+
+$a = (int) $a; // int(5)
+$b = (int) $b; // int(5)
+$c = (int) $c; // int(25)
+$d = (int) $d; // int(0)
+$e = (int) $e; // int(0)
+$f = (int) $f; // int(1)
+$g = (int) $g; // int(0)
+```
+
+#### Cast to Float
+
+To cast to float, use the (float) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "25 kilometers"; // String
+$d = "kilometers 25"; // String
+$e = "hello"; // String
+$f = true;    // Boolean
+$g = NULL;    // NULL
+
+$a = (float) $a; // float(5)
+$b = (float) $b; // float(5.34)
+$c = (float) $c; // float(25)
+$d = (float) $d; // float(0)
+$e = (float) $e; // float(0)
+$f = (float) $f; // float(1)
+$g = (float) $g; // float(0)
+```
+
+#### Cast to Boolean
+
+To cast to boolean, use the (bool) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = 0;       // Integer
+$d = -1;      // Integer
+$e = 0.1;     // Float
+$f = "hello"; // String
+$g = "";      // String
+$h = true;    // Boolean
+$i = NULL;    // NULL
+
+$a = (bool) $a; // bool(true)
+$b = (bool) $b; // bool(true)
+$c = (bool) $c; // bool(false)
+$d = (bool) $d; // bool(true)
+$e = (bool) $e; // bool(true)
+$f = (bool) $f; // bool(true)
+$g = (bool) $g; // bool(false)
+$h = (bool) $h; // bool(true)
+$i = (bool) $i; // bool(false)
+```
+
+#### Cast to Array
+
+To cast to array, use the (array) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "hello"; // String
+$d = true;    // Boolean
+$e = NULL;    // NULL
+
+$a = (array) $a; // array(1) { [0]=> int(5) }
+$b = (array) $b; // array(1) { [0]=> float(5.34) }
+$c = (array) $c; // array(1) { [0]=> string(5) "hello" }
+$d = (array) $d; // array(1) { [0]=> bool(true) }
+$e = (array) $e; // array(0) { }
+```
+
+#### Cast to Object
+
+To cast to object, use the (object) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "hello"; // String
+$d = true;    // Boolean
+$e = NULL;    // NULL
+
+$a = (object) $a;
+$b = (object) $b;
+$c = (object) $c;
+$d = (object) $d;
+$e = (object) $e;
+
+var_dump($a); // object(stdClass)#1 (1) { ["scalar"]=> int(5) }
+var_dump($b); // object(stdClass)#2 (1) { ["scalar"]=> float(5.34) }
+var_dump($c); // object(stdClass)#3 (1) { ["scalar"]=> string(5) "hello" }
+var_dump($d); // object(stdClass)#4 (1) { ["scalar"]=> bool(true) }
+var_dump($e); // object(stdClass)#5 (0) { }
+```
+
+#### Cast to NULL
+
+To cast to NULL, use the (unset) statement:
+
+```php
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "hello"; // String
+$d = true;    // Boolean
+$e = NULL;    // NULL
+
+$a = (unset) $a; // NULL
+$b = (unset) $b; // NULL
+$c = (unset) $c; // NULL
+$d = (unset) $d; // NULL
+$e = (unset) $e; // NULL
+```
+
+### Constants
+
+To create a constant, use the define() function.
+
+Syntax:
+
+```php
+define(name, value, case-insensitive);
+```
+
+Parameters:
+
+* name: Specifies the name of the constant
+
+* value: Specifies the value of the constant
+
+* case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false. Note: Defining case-insensitive constants was deprecated in PHP 7.3. PHP 8.0 accepts only false, the value true will produce a warning.
+
+```php
+// Create a constant with a case-sensitive name
+define("GREETING", "Welcome to my home!");
+echo GREETING; // Welcome to my home!
+
+// Create a constant with a case-insensitive name
+define("GREETING", "Welcome to my home!", true);
+echo greeting; // Welcome to my home!
+```
+
+#### Const Keyword
+
+You can also create a constant by using the const keyword.
+
+```php
+const MYCAR = "Volvo";
+echo MYCAR; // Volvo
+```
+
+#### Constant Arrays
+
+From PHP7, you can create an Array constant using the define() function.
+
+```php
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0]; // Alfa Romeo
+```
+
+#### Constants are Global
+
+Constants are automatically global and can be used across the entire script.
+
+```php
+define("GREETING", "Welcome to my home!");
+
+function myTest() {
+  echo GREETING;
+}
+
+myTest(); // Welcome to my home!
+```
+
+### Predefined Constants
+
+PHP has nine predefined constants that change value depending on where they are used, and therefor they are called "magic constants".
+
+These magic constants are written with a double underscore at the start and the end, except for the ClassName::class constant.
+
+#### Magic Constants
+
+Here are the magic constants
+
+```php
+// __CLASS__ : If used inside a class, the class name is returned.
+class Color {
+  public function myValue(){
+    return __CLASS__;
+  }
+}
+$red = new Color();
+echo $red->myValue(); // Color
+
+// __DIR__ : The directory of the file.
+echo __DIR__; // C:\xampp\htdocs\learn-php
+
+// __FILE__ : The file name including the full path.
+echo __FILE__; // C:\xampp\htdocs\learn-php\README.md
+
+// __FUNCTION__ : If inside a function, the function name is returned.
+function welcome(){
+  return __FUNCTION__;
+}
+echo welcome(); // welcome
+
+// __LINE__ : The current line number.
+echo __LINE__; // 956
+
+// __METHOD__ : If used inside a function that belongs to a class, both class and function name is returned.
+class Color {
+  public function myValue(){
+    return __CLASS__;
+  }
+}
+$red = new Color();
+echo $red->myValue(); // Color::myValue
+
+// __NAMESPACE__ : If used inside a namespace, the name of the namespace is returned.
+namespace myArea;
+function myValue(){
+  return __NAMESPACE__;
+}
+echo myValue(); // myArea
+
+// __TRAIT__ : If used inside a trait, the trait name is returned.
+trait message1 {
+  public function msg1() {
+    echo __TRAIT__;
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+$obj = new Welcome();
+$obj->msg1(); // message1
+
+// ClassName::class : Returns the name of the specified class and the name of the namespace, if any.
+namespace myArea;
+
+class Fruits {
+  public function myValue(){
+    return Fruits::class;
+  }
+}
+
+$kiwi = new Fruits();
+echo $kiwi->myValue(); // myArea\Fruits
+```
