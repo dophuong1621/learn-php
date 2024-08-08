@@ -997,3 +997,222 @@ class Fruits {
 $kiwi = new Fruits();
 echo $kiwi->myValue(); // myArea\Fruits
 ```
+
+### Operators
+
+Operators are used to perform operations on variables and values.
+
+#### Arithmetic Operators
+
+The PHP arithmetic operators are used with numeric values to perform common arithmetical operations, such as addition, subtraction, multiplication etc.
+
+```php
+$a = 4;
+$b = 2;
+
+// Addition
+echo $a + $b; // 6
+
+// Subtraction
+echo $a - $b; // 2
+
+// Multiplication
+echo $a * $b; // 8
+
+// Division
+echo $a / $b; // 2
+
+// Modulus (Chia lấy dư)
+echo $a % $b; // 0
+
+// Exponentiation (Luỹ thừa)
+echo $a ** $b; // 16
+```
+
+#### Assignment Operators
+
+The basic assignment operator in PHP is "=". It means that the left operand gets set to the value of the assignment expression on the right.
+
+```php
+$a = 4;
+
+// x = y
+echo $a; // 4
+
+// x += y
+$a += 2;
+echo $a; // 6
+
+// x -= y
+$a -= 2;
+echo $a; // 2
+
+// x *= y
+$a *= 2;
+echo $a; // 8
+
+// x /= y
+$a /= 2;
+echo $a; // 2
+
+// x %= y
+$a %= 2;
+echo $a; // 0
+```
+
+#### Comparison Operators
+
+The PHP comparison operators are used to compare two values (number or string):
+
+```php
+$a = 100;
+$b = "100";
+
+// ==
+var_dump($a == $b); // returns true because values are equal
+
+// ===
+var_dump($a === $b); // returns false because types are not equal
+
+// !=
+var_dump($a != $b); // returns false because values are equal
+
+// <>
+var_dump($a <> $b); // returns false because values are equal
+
+// !==
+var_dump($a !== $b); // returns true because types are not equal
+
+
+$x = 100;
+$y = 50;
+
+// >
+var_dump($x > $y); // returns true because $x is greater than $y
+
+// <
+var_dump($x < $y); // returns false because $y is less than $x
+
+// >=
+var_dump($x >= $y); // returns true because $x is greater than $y
+
+// <=
+var_dump($x <= $y); // returns false because $y greater than $x
+
+// <=>
+var_dump($x <=> $y); // returns +1 because $x is greater than $y
+```
+
+#### Increment / Decrement Operators
+
+The PHP increment/decrement operators are used to increment/decrement a variable's value.
+
+```php
+$x = 10;
+echo ++$x; // 11
+echo $x++; // 10
+echo --$x; // 9
+echo $x--; // 10
+```
+
+#### Logical Operators
+
+The PHP logical operators are used to combine conditional statements.
+
+```php
+$x = 100;
+$y = 50;
+
+// $x and $y
+if ($x == 100 and $y == 50) {
+    echo "Hello world!"; // true
+}
+
+// $x or $y
+if ($x == 100 or $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// $x xor $y
+if ($x == 100 xor $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// $x && $y
+if ($x == 100 && $y == 50) {
+    echo "Hello world!"; // true
+}
+
+// $x || $y
+if ($x == 100 || $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// !$x
+if (!($x == 90)) {
+    echo "Hello world!"; // true
+}
+```
+
+#### String Operators
+
+PHP has two operators that are specially designed for strings.
+
+```php
+$txt1 = "Hello";
+$txt2 = " world!";
+
+// .
+echo $txt1 . $txt2; // Hello world!
+
+// .=
+$txt1 .= $txt2;
+echo $txt1; // Hello world!
+```
+
+#### Array Operators
+
+The PHP array operators are used to compare arrays.
+
+```php
+$x = array("a" => "red", "b" => "green");
+$y = array("c" => "blue", "d" => "yellow");
+
+// $x + $y
+print_r($x + $y); // Array ( [a] => red [b] => green [c] => blue [d] => yellow )
+
+// $x == $y
+var_dump($x == $y); // false
+
+// $x === $y
+var_dump($x === $y); // false
+
+// $x != $y
+var_dump($x != $y); // true
+
+// $x <> $y
+var_dump($x <> $y); // true
+
+// $x !== $y
+var_dump($x !== $y); // true
+```
+
+#### Conditional Assignment Operators
+
+The PHP conditional assignment operators are used to set a value depending on conditions:
+
+```php
+// if empty($user) = TRUE, set $status = "anonymous"
+echo $status = (empty($user)) ? "anonymous" : "logged in"; // "anonymous"
+
+$user = "JiRim";
+// if empty($user) = FALSE, set $status = "logged in"
+echo $status = (empty($user)) ? "anonymous" : "logged in"; // "logged in"
+
+// variable $user is the value of $_GET['user']
+// and 'anonymous' if it does not exist
+echo $user = $_GET["user"] ?? "anonymous"; // "anonymous"
+
+// variable $color is "red" if $color does not exist or is null
+echo $color = $color ?? "red"; // "red"
+```
