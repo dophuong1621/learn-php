@@ -1216,3 +1216,130 @@ echo $user = $_GET["user"] ?? "anonymous"; // "anonymous"
 // variable $color is "red" if $color does not exist or is null
 echo $color = $color ?? "red"; // "red"
 ```
+
+### If Statements
+
+```php
+// Syntax
+if (condition) {
+  // code to be executed if condition is true;
+}
+
+$t = 14;
+if ($t < 20) {
+  echo "Have a good day!";
+}
+```
+
+#### If Operators
+
+If statements usually contain conditions that compare two values.
+
+```php
+// ==
+$t = 14;
+if ($t == 14) {
+  echo "Have a good day!";
+}
+
+// ===
+$x = 100;
+$y = 100;
+
+if ($x === $y) {
+  echo "$x is identical to $y";
+}
+
+// !=
+$x = 100;
+$y = 50;
+
+if ($x != $y) {
+  echo "$x is not equal to $y";
+}
+
+// <>
+$x = 100;
+$y = 50;
+
+if ($x <> $y) {
+  echo "$x is not equal to $y";
+}
+
+// !==
+$x = 100;
+$y = 50;
+
+if ($x !== $y) {
+  echo "$x is not identical to $y";
+}
+
+// >
+$x = 100;
+$y = 50;
+
+if ($x > $y) {
+  echo "$x is greater than $y";
+}
+
+// <
+$x = 100;
+$y = 50;
+
+if ($y < $x) {
+  echo "$y is less than $x";
+}
+
+// >=
+$x = 100;
+$y = 100;
+
+if ($x >= $y) {
+  echo "$x is greater than, or equal to $y";
+}
+
+// <=
+$x = 100;
+$y = 100;
+
+if ($y <= $x) {
+  echo "$y is less than, or equal to $x";
+}
+```
+
+#### Logical Operators
+
+```php
+$x = 100;
+$y = 50;
+
+// and
+if ($x == 100 and $y == 50) {
+    echo "Hello world!"; // true
+}
+
+// &&
+if ($x == 100 && $y == 50) {
+    echo "Hello world!"; // true
+}
+
+// or
+if ($x == 100 or $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// ||
+if ($x == 100 || $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// xor
+if ($x == 100 xor $y == 80) {
+    echo "Hello world!"; // true
+}
+
+// !
+if (!($x == 90)) {
+    echo "Hello world!"; // true
+}
+```
