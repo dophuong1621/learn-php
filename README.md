@@ -1343,3 +1343,124 @@ if (!($x == 90)) {
     echo "Hello world!"; // true
 }
 ```
+
+#### Short Hand If
+
+To write shorter code, you can write if statements on one line.
+
+```php
+$a = 5;
+
+if ($a < 10) $b = "Hello";
+echo $b
+```
+
+#### Short Hand If...Else
+
+if...else statements can also be written in one line, but the syntax is a bit different.
+
+```php
+$a = 13;
+
+$b = $a < 10 ? "Hello" : "Good Bye";
+echo $b;
+```
+
+#### Nested If
+
+You can have if statements inside if statements, this is called nested if statements.
+
+```php
+$a = 13;
+
+if ($a > 10) {
+  echo "Above 10";
+  if ($a > 20) {
+    echo " and also above 20";
+  } else {
+    echo " but not above 20";
+  }
+}
+```
+
+### Switch Statement
+
+Use the switch statement to select one of many blocks of code to be executed.
+
+```php
+$favcolor = "red";
+
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+```
+
+#### The default Keyword
+
+The default keyword specifies the code to run if there is no case match:
+
+```php
+$d = 4;
+
+switch ($d) {
+  case 6:
+    echo "Today is Saturday";
+    break;
+  case 0:
+    echo "Today is Sunday";
+    break;
+  default:
+    echo "Looking forward to the Weekend";
+}
+```
+
+Putting  the default block elsewhere than at the end of the switch block is allowed, but not recommended.
+
+```php
+$d = 4;
+
+switch ($d) {
+  default:
+    echo "Looking forward to the Weekend";
+    break;
+  case 6:
+    echo "Today is Saturday";
+    break;
+  case 0:
+    echo "Today is Sunday";
+}
+```
+
+#### Common Code Blocks
+
+If you want multiple cases to use the same code block, you can specify the cases like this:
+
+```php
+$d = 3;
+
+switch ($d) {
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+    echo "The weeks feels so long!";
+    break;
+  case 6:
+  case 0:
+    echo "Weekends are the best!";
+    break;
+  default:
+    echo "Something went wrong";
+}
+```
