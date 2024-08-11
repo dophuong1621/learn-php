@@ -1464,3 +1464,256 @@ switch ($d) {
     echo "Something went wrong";
 }
 ```
+
+### Loops
+
+Loops are used to execute the same block of code again and again, as long as a certain condition is true.
+
+Loops Type:
+
+* while - loops through a block of code as long as the specified condition is true
+
+* do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+
+* for - loops through a block of code a specified number of times
+
+* foreach - loops through a block of code for each element in an array
+
+#### While Loop
+
+```php
+// Print $i as long as $i is less than 6:
+$i = 1;
+while ($i < 6) {
+  echo $i;
+  $i++;
+} // 1,2,3,4,5
+```
+
+##### Break Statement
+
+With the break statement we can stop the loop even if the condition is still true:
+
+```php
+$i = 1;
+while ($i < 6) {
+  if ($i == 3) break;
+  echo $i;
+  $i++;
+} // 1,2
+```
+
+##### The continue Statement
+
+With the continue statement we can stop the current iteration, and continue with the next:
+
+```php
+$i = 0;
+while ($i < 6) {
+  $i++;
+  if ($i == 3) continue;
+  echo $i;
+} // 1,2,4,5,6
+```
+
+##### Alternative Syntax
+
+The while loop syntax can also be written with the endwhile statement like this
+
+```php
+$i = 1;
+while ($i < 6):
+  echo $i;
+  $i++;
+endwhile; // 1,2,3,4,5
+```
+
+#### Do While Loop
+
+```php
+$i = 1;
+
+do {
+  echo $i;
+  $i++;
+} while ($i < 6); // 1,2,3,4,5
+
+// Let us see what happens if we set the $i variable to 8 instead of 1, before execute the same do...while loop again:
+$i = 8;
+
+do {
+  echo $i;
+  $i++;
+} while ($i < 6);
+```
+
+##### The break Statement
+
+With the break statement we can stop the loop even if the condition is still true:
+
+```php
+$i = 1;
+
+do {
+  if ($i == 3) break;
+  echo $i;
+  $i++;
+} while ($i < 6); // 1,2
+```
+
+##### The continue Statement
+
+With the continue statement we can stop the current iteration, and continue with the next:
+
+```php
+$i = 0;
+
+do {
+  $i++;
+  if ($i == 3) continue;
+  echo $i;
+} while ($i < 6); // 1,2,4,5,6
+```
+
+#### The PHP for Loop
+
+The for loop is used when you know how many times the script should run.
+
+##### Syntax
+
+```php
+for (expression1, expression2, expression3) {
+  // code block
+}
+```
+
+* expression1 is evaluated once
+
+* expression2 is evaluated before each iteration
+
+* expression3 is evaluated after each iteration
+
+```php
+for ($x = 0; $x <= 10; $x++) {
+  echo "The number is: $x <br>";
+}
+```
+
+##### The break Statement
+
+With the break statement we can stop the loop even if the condition is still true:
+
+```php
+for ($x = 0; $x <= 10; $x++) {
+  if ($x == 3) break;
+  echo "The number is: $x <br>";
+} // 0,1,2
+```
+
+##### The continue Statement
+
+With the continue statement we can stop the current iteration, and continue with the next:
+
+```php
+for ($x = 0; $x <= 10; $x++) {
+  if ($x == 3) continue;
+  echo "The number is: $x <br>";
+}
+```
+
+#### Foreach Loop
+
+##### The foreach Loop on Arrays
+
+The most common use of the foreach loop, is to loop through the items of an array.
+
+```php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  echo "$x <br>";
+}
+```
+
+##### Keys and Values
+
+```php
+$members = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach ($members as $x => $y) {
+  echo "$x : $y <br>";
+}
+```
+
+##### The foreach Loop on Objects
+
+The foreach loop can also be used to loop through properties of an object:
+
+```php
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
+  }
+}
+
+$myCar = new Car("red", "Volvo");
+
+foreach ($myCar as $x => $y) {
+  echo "$x: $y <br>";
+}
+```
+
+##### The break Statement
+
+With the break statement we can stop the loop even if it has not reached the end:
+
+```php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") break;
+  echo "$x <br>";
+}
+```
+
+##### The continue Statement
+
+With the continue statement we can stop the current iteration, and continue with the next:
+
+```php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") continue;
+  echo "$x <br>";
+}
+```
+
+##### Foreach Byref
+
+When looping through the array items, any changes done to the array item will, by default, NOT affect the original array:
+
+```php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") $x = "pink";
+}
+
+var_dump($colors); // "red", "green", "blue", "yellow"
+```
+
+##### Alternative Syntax
+
+The foreach loop syntax can also be written with the endforeach statement like this
+
+```php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) :
+  echo "$x <br>";
+endforeach;
+```
