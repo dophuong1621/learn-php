@@ -1717,3 +1717,106 @@ foreach ($colors as $x) :
   echo "$x <br>";
 endforeach;
 ```
+
+### Functions
+
+#### Create a Function
+
+A user-defined function declaration starts with the keyword function, followed by the name of the function:
+
+```php
+function myMessage() {
+  echo "Hello world!";
+}
+
+// Call a Function
+myMessage()
+```
+
+#### PHP Function Arguments
+
+Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+```php
+function color($cname) {
+  echo "$cname<br>";
+}
+
+color("Red");
+color("Blue");
+color("Green");
+color("White");
+color("Black");
+```
+
+#### PHP Default Argument Value
+
+The following example shows how to use a default parameter. If we call the function setHeight() without arguments it takes the default value as argument:
+
+```php
+function setHeight($minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // default value of 50
+setHeight(135);
+setHeight(80);
+```
+
+#### Functions - Returning values
+
+To let a function return a value, use the return statement:
+
+```php
+function sum($x, $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+```
+
+#### Passing Arguments by Reference
+
+```php
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num;
+```
+
+#### Variable Number of Arguments
+
+By using the ... operator in front of the function parameter, the function accepts an unknown number of arguments. This is also called a variadic function.
+
+```php
+function sumMyNumbers(...$x) {
+  $n = 0;
+  $len = count($x);
+  for($i = 0; $i < $len; $i++) {
+    $n += $x[$i];
+  }
+  return $n;
+}
+
+$a = sumMyNumbers(5, 2, 6, 2, 7, 7);
+echo $a; // 29
+```
+
+#### Return Type Declarations
+
+PHP 7 also supports Type Declarations for the return statement. Like with the type declaration for function arguments, by enabling the strict requirement, it will throw a "Fatal Error" on a type mismatch.
+
+```php
+declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo addNumbers(1.2, 5.2);
+```
