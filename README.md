@@ -1820,3 +1820,168 @@ function addNumbers(float $a, float $b) : float {
 }
 echo addNumbers(1.2, 5.2);
 ```
+
+### Global Variables - Superglobals
+
+#### Global Variables
+
+To use a global variable inside a function you have to either define them as global with the global keyword, or refer to them by using the $GLOBALS syntax.
+
+```php
+$x = 75;
+
+function myfunction() {
+  echo $GLOBALS['x'];
+}
+
+myfunction() // 75
+```
+
+You can also refer to global variables inside functions by defining them as global with the global keyword.
+
+```php
+$x = 75;
+
+function myfunction() {
+  global $x;
+  echo $x;
+}
+myfunction() // 75
+```
+
+#### $_SERVER
+
+Is a PHP super global variable which holds information about headers, paths, and script locations.
+
+```php
+echo $_SERVER['PHP_SELF']; // Returns the filename of the currently executing script
+
+echo $_SERVER['GATEWAY_INTERFACE']; // Returns the version of the Common Gateway Interface (CGI) the server is using
+
+echo $_SERVER['SERVER_ADDR']; // Returns the IP address of the host server
+
+echo $_SERVER['SERVER_NAME']; // 	Returns the name of the host server
+
+echo $_SERVER['SERVER_SOFTWARE']; // Returns the server identification string (such as Apache/2.2.24)
+
+echo $_SERVER['SERVER_PROTOCOL']; // Returns the name and revision of the information protocol (such as HTTP/1.1)
+
+echo $_SERVER['REQUEST_METHOD']; // Returns the request method used to access the page (such as POST)
+
+echo $_SERVER['REQUEST_TIME']; // Returns the timestamp of the start of the request (such as 1377687496)
+
+echo $_SERVER['QUERY_STRING']; // Returns the query string if the page is accessed via a query string
+
+echo $_SERVER['HTTP_ACCEPT']; // Returns the Accept header from the current request
+
+echo $_SERVER['HTTP_ACCEPT_CHARSET']; // Returns the Accept_Charset header from the current request (such as utf-8,ISO-8859-1)
+
+echo $_SERVER['HTTP_HOST']; // Returns the Host header from the current request
+
+echo $_SERVER['HTTP_REFERER']; // Returns the complete URL of the current page (not reliable because not all user-agents support it)
+
+echo $_SERVER['HTTPS']; // Is the script queried through a secure HTTP protocol
+
+echo $_SERVER['REMOTE_ADDR']; // Returns the IP address from where the user is viewing the current page
+
+echo $_SERVER['REMOTE_HOST']; // Returns the Host name from where the user is viewing the current page
+
+echo $_SERVER['REMOTE_PORT']; // Returns the port being used on the user's machine to communicate with the web server
+
+echo $_SERVER['SCRIPT_FILENAME']; // Returns the absolute pathname of the currently executing script
+
+echo $_SERVER['SERVER_ADMIN']; // Returns the value given to the SERVER_ADMIN directive in the web server configuration file
+
+echo $_SERVER['SERVER_PORT']; // Returns the port on the server machine being used by the web server for communication (such as 80)
+
+echo $_SERVER['SERVER_SIGNATURE'];// Returns the server version and virtual host name which are added to server-generated pages
+
+echo $_SERVER['PATH_TRANSLATED']; // Returns the file system based path to the current script
+
+echo $_SERVER['SCRIPT_NAME']; // Returns the path of the current script
+
+echo $_SERVER['SCRIPT_URI']; // Returns the URI of the current page
+```
+
+#### $_REQUEST
+
+Is a PHP super global variable which contains submitted form data, and all cookie data.
+
+##### Using $_REQUEST on $_POST Requests
+
+```php
+<html>
+<body>
+
+<form method="post" action="demo_request.php">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+</body>
+</html>
+
+$name = $_REQUEST['fname'];
+echo $name;
+```
+
+##### Using $_REQUEST on $_GET Requests
+
+GET request can be form submissions as in the example above, with the method attribute of the HTML <form> element set to GET.
+
+```php
+<html>
+<body>
+
+<a href="demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a>
+
+</body>
+</html>
+```
+
+#### $_POST
+
+A HTML form submits information via the HTTP POST method if the form's method attribute is set to "POST".
+
+```php
+<html>
+<body>
+
+<form method="POST" action="demo_request.php">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+</body>
+</html>
+
+// When a user clicks the submit button, the form data is sent to a PHP file specified in the action attribute of the <form> tag.
+$name = $_POST['fname'];
+echo $name;
+```
+
+#### $_GET
+
+In the PHP file we can use the $_GET variable to collect the value of the query string.
+
+```php
+<a href="demo_phpfile.php?name=JiRim&email=jirim@example.com">Test $GET</a>
+
+echo "Study " . $_GET['name'] . " at " . $_GET['email'];
+```
+
+##### $_GET in HTML Forms
+
+A HTML form submits information via the HTTP GET method if the form's method attribute is set to "GET".
+
+```php
+<form action="welcome_get.php" method="GET">
+  Name: <input type="text" name="name">
+  E-mail: <input type="text" name="email">
+  <input type="submit">
+</form>
+
+// data: welcome_get.php?name=JiRim&email=jirim@example.com
+echo $_GET["name"]; // JiRim
+echo $_GET["email"]; // jirim@example.com
+```
