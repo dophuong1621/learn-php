@@ -1985,3 +1985,224 @@ A HTML form submits information via the HTTP GET method if the form's method att
 echo $_GET["name"]; // JiRim
 echo $_GET["email"]; // jirim@example.com
 ```
+
+### Regular Expressions
+
+What is a Regular Expression?
+
+A regular expression is a sequence of characters that forms a search pattern. When you search for data in a text, you can use this search pattern to describe what you are searching for.
+
+#### Syntax
+
+In PHP, regular expressions are strings composed of delimiters, a pattern and optional modifiers.
+
+```php
+$exp = "/jirim/i";
+```
+// In the example above, / is the delimiter, jirim is the pattern that is being searched for, and i is a modifier that makes the search case-insensitive.
+
+#### Regular Expression Functions
+
+PHP provides a variety of functions that allow you to use regular expressions.
+
+* preg_match(): Returns 1 if the pattern was found in the string and 0 if not
+
+* preg_match_all(): Returns the number of times the pattern was found in the string, which may also be 0
+
+* preg_replace(): Returns a new string where matched patterns have been replaced with another string
+
+#### Using preg_match()
+
+The preg_match() function will tell you whether a string contains matches of a pattern.
+
+```php
+$str = "Hello JiRim";
+$pattern = "/jirim/i";
+echo preg_match($pattern, $str); // 1
+```
+
+#### Using preg_match_all()
+
+The preg_match_all() function will tell you how many matches were found for a pattern in a string.
+
+```php
+$str = "Apples are red, and apples taste sweet.";
+$pattern = "/apples/i";
+echo preg_match_all($pattern, $str); // 2
+```
+
+### Using preg_replace()
+
+The preg_replace() function will replace all of the matches of the pattern in a string with another string.
+
+```php
+$str = "Welcome to New York City!";
+$pattern = "/new york city/i";
+echo preg_replace($pattern, "Los Angeles", $str);
+```
+
+#### Regular Expression Modifiers
+
+* i: Performs a case-insensitive search
+
+* m: Performs a multiline search (patterns that search for a match at the beginning or end of a string will now match the beginning or end of each line)
+
+* u: Enables correct matching of UTF-8 encoded patterns
+
+#### Regular Expression Patterns
+
+Brackets are used to find a range of characters:
+
+```php
+// [abc]: Find one or many of the characters inside the brackets
+$txt = "Hello, JiRim!";
+$pattern = "/[li]/";
+echo preg_match_all($pattern, $txt); // 4
+
+// [^abc]: Find any character NOT between the brackets
+$txt = "Welcome";
+$pattern = "/[^eo]/";
+echo preg_match_all($pattern, $txt); // 4
+
+// [a-z]:	Find any character alphabetically between two letters
+$txt = "Welcome";
+$pattern = "/[e-o]/";
+echo preg_match_all($pattern, $txt); // 5
+
+// [A-z]: Find any character alphabetically between a specified upper-case letter and a specified lower-case letter
+$txt = "Welcome to my home";
+$pattern = "/[T-e]/";
+echo preg_match_all($pattern, $txt); // 5
+
+// [A-Z]: Find any character alphabetically between two upper-case letters.
+$txt = "Welcome to my home";
+$pattern = "/[A-Z]/";
+echo preg_match_all($pattern, $txt); // 1
+
+// [123]: Find one or many of the digits inside the brackets
+$txt = "JiRim was born in 2001.";
+$pattern = "/[123]/";
+echo preg_match_all($pattern, $txt); // 2
+
+// [0-5]: Find any digits between the two numbers
+$txt = "Call 555-2368";
+$pattern = "/[0-5]/";
+echo preg_match_all($pattern, $txt); // 5
+
+// [0-9]: Find any digits
+$txt = "JiRim was born in 2001.";
+$pattern = "/[0-9]/";
+echo preg_match_all($pattern, $txt); // 4
+```
+
+#### Metacharacters
+
+Metacharacters are characters with a special meaning:
+
+```php
+// | Find a match for any one of the patterns separated by | as in: cat|dog|fish
+$txt = "We have three dogs, one fish, but no cats";
+$pattern = "/cat|dog|fish/";
+echo preg_match_all($pattern, $txt); // 3
+
+// . Find any character
+$txt = "JiRim was born in 2001.";
+$pattern = "/./";
+echo preg_match_all($pattern, $txt); // 23
+
+// ^ Finds a match as the beginning of a string as in: ^Hello
+$txt = "JiRim was born in 2001.";
+$pattern = "/^Ji/";
+echo preg_match_all($pattern, $txt); // 1
+
+// $: Finds a match at the end of the string as in: World$
+$txt = "Hello World";
+$pattern = "/World$/";
+echo preg_match_all($pattern, $txt); // 1
+
+// \d: Find any digits
+$txt = "JiRim was born in 2001.";
+$pattern = "/\d/";
+echo preg_match_all($pattern, $txt); // 4
+
+// \D: Find any non-digits
+$txt = "JiRim was born in 2001.";
+$pattern = "/\D/";
+echo preg_match_all($pattern, $txt); // 19
+
+// \s: Find any whitespace character
+$txt = "JiRim was born in 2001.";
+$pattern = "/\s/";
+echo preg_match_all($pattern, $txt); // 4
+
+// \S: Find any non-whitespace character
+$txt = "JiRim was born in 2001.";
+$pattern = "/\S/";
+echo preg_match_all($pattern, $txt); // 19
+
+// \w: Find any alphabetical letter (a to Z) and digit (0 to 9)
+$txt = "JiRim was born in 2001.";
+$pattern = "/\w/";
+echo preg_match_all($pattern, $txt); // 18
+
+// \W	Find any non-alphabetical and non-digit character
+$txt = "JiRim was born in 2001.";
+$pattern = "/\W/";
+echo preg_match_all($pattern, $txt); // 5
+
+// \b: Find a match at the beginning of a word like this: \bWORD, or at the end of a word like this: WORD\b
+$txt = "Hello World";
+$pattern = "/\bHel/";
+echo preg_match_all($pattern, $txt); // 1
+
+// \uxxxx: Find the Unicode character specified by the hexadecimal number xxxx
+$txt = "JiRim was born in 2001.";
+$pattern = "/\u{0030}/";
+echo preg_match_all($pattern, $txt); // 2
+```
+
+#### Quantifiers
+
+Quantifiers define quantities:
+
+```php
+// n+	Matches any string that contains at least one n
+$txt = "JiRim was born in 2001.";
+$pattern = "/n+/";
+echo preg_match_all($pattern, $txt); // 2
+
+// n*	Matches any string that contains zero or more occurrences of n
+$txt = "Email của tôi là example@domain.com.";
+$pattern = "/@domain\.com*/";
+echo preg_match_all($pattern, $txt); // 1
+
+// n?	Matches any string that contains zero or one occurrences of n
+$txt = "The cats are playing.";
+$pattern = "/cats?/";
+echo preg_match_all($pattern, $txt); // 1
+
+// n{3}	Matches any string that contains a sequence of 3 n's
+$txt = "Mã bưu điện là 123.";
+$pattern = "/\d{3}/";
+echo preg_match_all($pattern, $txt); // 1
+
+// n{2, 5}	Matches any string that contains a sequence of at least 2, but not more that 5 n's
+$txt = "Tên tài khoản của bạn là user123.";
+$pattern = "/user\d{2,5}/";
+echo preg_match_all($pattern, $txt); // 1
+
+// n{3,}	Matches any string that contains a sequence of at least 3 n's
+$txt = "Họ của tôi là Nguyen.";
+$pattern = "/\b\w{3,}\b/";
+echo preg_match_all($pattern, $txt); // 2
+```
+
+#### Grouping
+
+You can use parentheses ( ) to apply quantifiers to entire patterns. They also can be used to select parts of the pattern to be used as a match.
+
+```php
+$str = "Apples and bananas.";
+$pattern = "/ba(na){2}/i";
+echo preg_match($pattern, $str);
+```
