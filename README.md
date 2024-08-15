@@ -2206,3 +2206,43 @@ $str = "Apples and bananas.";
 $pattern = "/ba(na){2}/i";
 echo preg_match($pattern, $str);
 ```
+
+### Form Handling
+
+#### A Simple HTML Form
+
+The example below displays a simple HTML form with two input fields and a submit button:
+
+```php
+// POST
+<form action="welcome.php" method="POST">
+Name: <input type="text" name="name"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>
+
+// When the user fills out the form above and clicks the submit button
+Welcome <?php echo $_POST["name"]; ?><br> // Welcome JiRim
+Your email address is: <?php echo $_POST["email"]; ?> // Your email address is: jirim@gmail.com
+
+// GET
+<form action="welcome_get.php" method="GET">
+Name: <input type="text" name="name"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>
+
+// Results
+Welcome <?php echo $_GET["name"]; ?><br> // Welcome JiRim
+Your email address is: <?php echo $_GET["email"]; ?> // Your email address is: jirim@gmail.com
+```
+
+#### When to use GET?
+
+GET may be used for sending non-sensitive data.
+
+Note: GET should NEVER be used for sending passwords or other sensitive information!
+
+#### When to use POST?
+
+Information sent from a form with the POST method is invisible to others (all names/values are embedded within the body of the HTTP request) and has no limits on the amount of information to send.
