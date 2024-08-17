@@ -2246,3 +2246,37 @@ Note: GET should NEVER be used for sending passwords or other sensitive informat
 #### When to use POST?
 
 Information sent from a form with the POST method is invisible to others (all names/values are embedded within the body of the HTTP request) and has no limits on the amount of information to send.
+
+### Form Validation
+
+#### Text Fields
+
+The name, email, and website fields are text input elements, and the comment field is a textarea.
+
+```php
+Name: <input type="text" name="name">
+E-mail: <input type="text" name="email">
+Website: <input type="text" name="website">
+Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+```
+
+#### Radio Buttons
+
+The gender fields are radio buttons and the HTML code looks like this:
+
+```php
+Gender:
+<input type="radio" name="gender" value="female">Female
+<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="other">Other
+```
+
+#### The Form Element
+
+```php
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+// The $_SERVER["PHP_SELF"] is a super global variable that returns the filename of the currently executing script.
+
+// The htmlspecialchars() function converts special characters into HTML entities. This means that it will replace HTML characters like < and > with &lt; and &gt;. This prevents attackers from exploiting the code by injecting HTML or Javascript code (Cross-site Scripting attacks) in forms.
+```
