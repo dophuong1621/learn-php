@@ -2280,3 +2280,92 @@ Gender:
 
 // The htmlspecialchars() function converts special characters into HTML entities. This means that it will replace HTML characters like < and > with &lt; and &gt;. This prevents attackers from exploiting the code by injecting HTML or Javascript code (Cross-site Scripting attacks) in forms.
 ```
+
+### Date and time
+
+The PHP date() function formats a timestamp to a more readable date and time.
+
+```php
+#Syntax
+date(format,timestamp)
+```
+
+* format:	Required. Specifies the format of the timestamp
+
+* timestamp:	Optional. Specifies a timestamp. Default is the current date and time
+
+#### Get a Date
+
+* d - Represents the day of the month (01 to 31)
+
+* m - Represents a month (01 to 12)
+
+* Y - Represents a year (in four digits)
+
+* l (lowercase 'L') - Represents the day of the week
+
+```php
+echo "Today is " . date("Y/m/d") . "<br>"; // Today is 2024/08/18
+echo "Today is " . date("Y.m.d") . "<br>"; // Today is 2020.08.18
+echo "Today is " . date("Y-m-d") . "<br>"; // Today is 2020-08-18
+echo "Today is " . date("l"); // Today is Sunday
+```
+
+#### Get a Time
+
+* H - 24-hour format of an hour (00 to 23)
+
+* h - 12-hour format of an hour with leading zeros (01 to 12)
+
+* i - Minutes with leading zeros (00 to 59)
+
+* s - Seconds with leading zeros (00 to 59)
+
+* a - Lowercase Ante meridiem and Post meridiem (am or pm)
+
+```php
+echo "The time is " . date("h:i:sa"); // The time is 11:38:48pm
+```
+
+#### Get Your Time Zone
+
+The example below sets the timezone to "America/New_York", then outputs the current time in the specified format:
+
+```php
+date_default_timezone_set("America/New_York");
+echo "The time is " . date("h:i:sa"); // The time is 12:39:40pm
+```
+
+#### Create a Date With mktime()
+
+The PHP mktime() function returns the Unix timestamp for a date. The Unix timestamp contains the number of seconds between the Unix Epoch (January 1 1970 00:00:00 GMT) and the time specified.
+
+```php
+// Syntax
+mktime(hour, minute, second, month, day, year);
+
+$d=mktime(11, 14, 54, 8, 12, 2014);
+echo "Created date is " . date("Y-m-d h:i:sa", $d); // Created date is 2014-08-12 11:14:54am
+```
+
+#### Create a Date From a String With strtotime()
+
+The PHP strtotime() function is used to convert a human readable date string into a Unix timestamp (the number of seconds since January 1 1970 00:00:00 GMT).
+
+```php
+// Syntax
+strtotime(time, now);
+
+$d=strtotime("10:30pm April 15 2014");
+echo "Created date is " . date("Y-m-d h:i:sa", $d); // Created date is 2014-04-15 10:30:00pm
+
+$d=strtotime("tomorrow");
+echo date("Y-m-d h:i:sa", $d) . "<br>"; // 2024-08-19 12:00:00am
+
+$d=strtotime("next Saturday");
+echo date("Y-m-d h:i:sa", $d) . "<br>"; // 2024-08-24 12:00:00am
+
+$d=strtotime("+3 Months");
+echo date("Y-m-d h:i:sa", $d) . "<br>"; // 2024-11-18 04:42:34pm
+```
+
