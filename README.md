@@ -2369,3 +2369,53 @@ $d=strtotime("+3 Months");
 echo date("Y-m-d h:i:sa", $d) . "<br>"; // 2024-11-18 04:42:34pm
 ```
 
+### Include and Require Statements
+
+#### The include and require statements are identical, except upon failure:
+
+* require will produce a fatal error (E_COMPILE_ERROR) and stop the script
+
+* include will only produce a warning (E_WARNING) and the script will continue
+
+```php
+// Syntax
+include 'filename';
+
+or
+
+require 'filename';
+```
+
+Assume we have a standard footer file called "footer.php", that looks like this:
+
+```php
+<?php
+echo "<p>Copyright &copy; 1999-" . date("Y") . " JiRim</p>";
+?>
+```
+
+To include the footer file in a page, use the include statement:
+
+```php
+<h1>Welcome to my home page!</h1>
+<p>Some text.</p>
+<p>Some more text.</p>
+<?php include 'footer.php';?>
+```
+
+#### Include vs Require
+
+The require statement is also used to include a file into the PHP code.
+
+However, there is one big difference between include and require; when a file is included with the include statement and PHP cannot find it, the script will continue to execute:
+
+```php
+<h1>Welcome to my home page!</h1>
+<?php include 'noFileExists.php';
+  echo "I have a $color $car."; // I have a .
+?>
+
+<?php require 'noFileExists.php';
+  echo "I have a $color $car."; // empty
+?>
+```
