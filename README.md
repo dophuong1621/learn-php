@@ -2389,9 +2389,7 @@ require 'filename';
 Assume we have a standard footer file called "footer.php", that looks like this:
 
 ```php
-<?php
 echo "<p>Copyright &copy; 1999-" . date("Y") . " JiRim</p>";
-?>
 ```
 
 To include the footer file in a page, use the include statement:
@@ -2400,7 +2398,7 @@ To include the footer file in a page, use the include statement:
 <h1>Welcome to my home page!</h1>
 <p>Some text.</p>
 <p>Some more text.</p>
-<?php include 'footer.php';?>
+include 'footer.php';
 ```
 
 #### Include vs Require
@@ -2411,11 +2409,133 @@ However, there is one big difference between include and require; when a file is
 
 ```php
 <h1>Welcome to my home page!</h1>
-<?php include 'noFileExists.php';
-  echo "I have a $color $car."; // I have a .
-?>
+include 'noFileExists.php';
+echo "I have a $color $car."; // I have a .
 
-<?php require 'noFileExists.php';
-  echo "I have a $color $car."; // empty
-?>
+require 'noFileExists.php';
+echo "I have a $color $car."; // empty
+```
+
+### File Handling
+
+File handling is an important part of any web application. You often need to open and process a file for different tasks.
+
+#### readfile() Function
+
+The readfile() function reads a file and writes it to the output buffer.
+
+```php
+// file webdictionary.txt
+AJAX = Asynchronous JavaScript and XML
+CSS = Cascading Style Sheets
+HTML = Hyper Text Markup Language
+PHP = PHP Hypertext Preprocessor
+SQL = Structured Query Language
+SVG = Scalable Vector Graphics
+XML = EXtensible Markup Language
+
+echo readfile("webdictionary.txt");
+```
+
+### File Open/Read/Close
+
+#### Open File - fopen()
+
+A better method to open files is with the fopen() function. This function gives you more options than the readfile() function.
+
+```php
+// file webdictionary.txt
+AJAX = Asynchronous JavaScript and XML
+CSS = Cascading Style Sheets
+HTML = Hyper Text Markup Language
+PHP = PHP Hypertext Preprocessor
+SQL = Structured Query Language
+SVG = Scalable Vector Graphics
+XML = EXtensible Markup Language
+
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("webdictionary.txt"));
+fclose($myfile);
+```
+
+* r:	Open a file for read only. File pointer starts at the beginning of the file
+
+* w: Open a file for write only. Erases the contents of the file or creates a new file if it doesn't exist. File pointer starts at the beginning of the file  
+
+* a: Open a file for write only. The existing data in file is preserved. File pointer starts at the end of the file. Creates a new file if the file doesn't exist
+
+* x: Creates a new file for write only. Returns FALSE and an error if file already exists
+
+* r+: Open a file for read/write. File pointer starts at the beginning of the file
+
+* w+: Open a file for read/write. Erases the contents of the file or creates a new file if it doesn't exist. File pointer starts at the beginning of the file
+
+* a+: Open a file for read/write. The existing data in file is preserved. File pointer starts at the end of the file. Creates a new file if the file doesn't exist
+
+* x+: Creates a new file for read/write. Returns FALSE and an error if file already exists
+
+#### Read File - fread()
+
+The fread() function reads from an open file.
+
+The first parameter of fread() contains the name of the file to read from and the second parameter specifies the maximum number of bytes to read.
+
+```php
+fread($myfile,filesize("webdictionary.txt"));
+```
+
+#### Close File - fclose()
+
+The fclose() function is used to close an open file.
+
+```php
+$myfile = fopen("webdictionary.txt", "r");
+// some code to be executed....
+fclose($myfile);
+```
+
+#### Read Single Line - fgets()
+
+The fgets() function is used to read a single line from a file.
+
+```php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fgets($myfile); // AJAX = Asynchronous JavaScript and XML
+fclose($myfile);
+```
+
+#### Check End-Of-File - feof()
+
+The feof() function checks if the "end-of-file" (EOF) has been reached.
+
+The feof() function is useful for looping through data of unknown length.
+
+```php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+// Output one line until end-of-file
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+  /* result: AJAX = Asynchronous JavaScript and XML
+            CSS = Cascading Style Sheets
+            HTML = Hyper Text Markup Language
+            PHP = PHP Hypertext Preprocessor
+            SQL = Structured Query Language
+            SVG = Scalable Vector Graphics
+            XML = EXtensible Markup Language */
+}
+fclose($myfile);
+```
+
+#### Read Single Character - fgetc()
+
+The fgetc() function is used to read a single character from a file.
+
+```php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+// Output one character until end-of-file
+while(!feof($myfile)) {
+  echo fgetc($myfile);
+  // result: AJAX = Asynchronous JavaScript and XML CSS = Cascading Style Sheets HTML = Hyper Text Markup Language PHP = PHP Hypertext Preprocessor SQL = Structured Query Language SVG = Scalable Vector Graphics XML = EXtensible Markup Language
+}
+fclose($myfile);
 ```
