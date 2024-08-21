@@ -2539,3 +2539,52 @@ while(!feof($myfile)) {
 }
 fclose($myfile);
 ```
+
+### File Create/Write
+
+#### PHP Create File - fopen()
+
+The fopen() function is also used to create a file. Maybe a little confusing, but in PHP, a file is created using the same function used to open files.
+
+```php
+$myfile = fopen("testfile.txt", "w")
+```
+
+#### PHP Write to File - fwrite()
+
+The first parameter of fwrite() contains the name of the file to write to and the second parameter is the string to be written.
+
+```php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "John Doe\n";
+fwrite($myfile, $txt);
+$txt = "Jane Doe\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+```
+
+#### PHP Overwriting
+
+Now that "newfile.txt" contains some data we can show what happens when we open an existing file for writing. All the existing data will be ERASED and we start with an empty file.
+
+```php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "Mickey Mouse\n";
+fwrite($myfile, $txt);
+$txt = "Minnie Mouse\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+```
+
+#### PHP Append Text
+
+You can append data to a file by using the "a" mode. The "a" mode appends text to the end of the file, while the "w" mode overrides (and erases) the old content of the file.
+
+```php
+$myfile = fopen("newfile.txt", "a") or die("Unable to open file!");
+$txt = "Donald Duck\n";
+fwrite($myfile, $txt);
+$txt = "Goofy Goof\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+```
