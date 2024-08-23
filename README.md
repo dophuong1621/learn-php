@@ -2740,3 +2740,71 @@ if ($uploadOk == 0) {
   }
 }
 ```
+
+### Cookies
+
+#### What is a Cookie?
+
+A cookie is often used to identify a user. A cookie is a small file that the server embeds on the user's computer. Each time the same computer requests a page with a browser, it will send the cookie too. With PHP, you can both create and retrieve cookie values.
+
+#### Create Cookies With PHP
+
+A cookie is created with the setcookie() function.
+
+```php
+// Syntax
+setcookie(name, value, expire, path, domain, secure, httponly);
+```
+
+#### Create/Retrieve a Cookie
+
+```php
+$cookie_name = "user";
+$cookie_value = "JiRim";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+if(!isset($_COOKIE[$cookie_name])) {
+  echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+  echo "Cookie '" . $cookie_name . "' is set!<br>";
+  echo "Value is: " . $_COOKIE[$cookie_name]; // JiRim
+}
+```
+
+#### Modify a Cookie Value
+
+```php
+$cookie_name = "user";
+$cookie_value = "Do Phuong";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+if(!isset($_COOKIE[$cookie_name])) {
+  echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+  echo "Cookie '" . $cookie_name . "' is set!<br>";
+  echo "Value is: " . $_COOKIE[$cookie_name]; // Do Phuong
+}
+```
+
+#### Delete a Cookie
+
+To delete a cookie, use the setcookie() function with an expiration date in the past:
+
+```php
+setcookie("user", "", time() - 3600);
+echo "Cookie 'user' is deleted.";
+```
+
+#### Check if Cookies are Enabled
+
+The following example creates a small script that checks whether cookies are enabled. First, try to create a test cookie with the setcookie() function, then count the $_COOKIE array variable:
+
+```php
+setcookie("test_cookie", "test", time() + 3600, '/');
+
+if(count($_COOKIE) > 0) {
+  echo "Cookies are enabled.";
+} else {
+  echo "Cookies are disabled.";
+}
+```
