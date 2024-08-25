@@ -2808,3 +2808,43 @@ if(count($_COOKIE) > 0) {
   echo "Cookies are disabled.";
 }
 ```
+
+### Sessions
+
+#### What is a PHP Session?
+
+When you work with an application, you open it, do some changes, and then you close it. This is much like a Session. The computer knows who you are. It knows when you start the application and when you end. But on the internet there is one problem: the web server does not know who you are or what you do, because the HTTP address doesn't maintain state.
+
+Session variables solve this problem by storing user information to be used across multiple pages (e.g. username, favorite color, etc). By default, session variables last until the user closes the browser.
+
+So; Session variables hold information about one single user, and are available to all pages in one application.
+
+#### Start a PHP Session
+
+A session is started with the session_start() function.
+
+```php
+// Start the session
+session_start();
+
+// Set session variables
+$_SESSION["favcolor"] = "green";
+$_SESSION["favanimal"] = "cat";
+echo "Session variables are set.";
+
+// Get PHP Session Variable Values
+echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>"; // Favorite color is yellow.
+echo "Favorite animal is " . $_SESSION["favanimal"] . "."; // Favorite animal is cat.
+
+// Modify a PHP Session Variable
+$_SESSION["favcolor"] = "yellow";
+print_r($_SESSION); // Array ( [favcolor] => yellow )
+
+// Destroy a PHP Session
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+```
+
