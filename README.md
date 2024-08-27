@@ -3011,3 +3011,45 @@ $str = "<h1>Hello WorldÆØÅ!</h1>";
 $newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 echo $newstr; // Hello World!
 ```
+
+### Callback Functions
+
+A callback function (often referred to as just "callback") is a function which is passed as an argument into another function
+
+Any existing function can be used as a callback function. To use a function as a callback function, pass a string containing the name of the function as the argument of another function
+
+```php
+function my_callback($item) {
+  return strlen($item);
+}
+
+$strings = ["apple", "orange", "banana", "coconut"];
+$lengths = array_map("my_callback", $strings);
+print_r($lengths); // 5, 6, 6, 7
+
+// Use an anonymous function as a callback for PHP's array_map() function
+$strings = ["apple", "orange", "banana", "coconut"];
+$lengths = array_map( function($item) { return strlen($item); } , $strings);
+print_r($lengths); // 5, 6, 6, 7
+```
+
+#### Callbacks in User Defined Functions
+
+```php
+function exclaim($str) {
+  return $str . "! ";
+}
+
+function ask($str) {
+  return $str . "? ";
+}
+
+function printFormatted($str, $format) {
+  // Calling the $format callback function
+  echo $format($str);
+}
+
+// Pass "exclaim" and "ask" as callback functions to printFormatted()
+printFormatted("Hello world", "exclaim"); // Hello world!
+printFormatted("Hello world", "ask"); // Hello world?
+```
