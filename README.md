@@ -3053,3 +3053,87 @@ function printFormatted($str, $format) {
 printFormatted("Hello world", "exclaim"); // Hello world!
 printFormatted("Hello world", "ask"); // Hello world?
 ```
+
+### JSON
+
+#### What is JSON?
+
+JSON stands for JavaScript Object Notation, and is a syntax for storing and exchanging data.
+
+Since the JSON format is a text-based format, it can easily be sent to and from a server, and used as a data format by any programming language.
+
+First, we will look at the following two functions:
+
+* json_encode()
+
+* json_decode()
+
+#### json_encode()
+
+The json_encode() function is used to encode a value to JSON format.
+
+```php
+// Encode an associative array into a JSON object
+$age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+echo json_encode($age); // {"Peter":35,"Ben":37,"Joe":43}
+
+// Encode an indexed array into a JSON array
+$cars = array("Volvo", "BMW", "Toyota");
+echo json_encode($cars); // ["Volvo","BMW","Toyota"]
+```
+
+#### json_decode()
+
+The json_decode() function is used to decode a JSON object into a PHP object or an associative array
+
+```php
+// Decodes JSON data into a PHP object
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+var_dump(json_decode($jsonobj)); // object(stdClass)#1 (3) { ["Peter"]=> int(35) ["Ben"]=> int(37) ["Joe"]=> int(43) }
+
+// Decodes JSON data into a PHP associative array
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+var_dump(json_decode($jsonobj, true)); // array(3) { ["Peter"]=> int(35) ["Ben"]=> int(37) ["Joe"]=> int(43) }
+```
+
+#### Accessing the Decoded Values
+
+Here are two examples of how to access the decoded values from an object and from an associative array:
+
+```php
+// Access the values from a PHP object
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$obj = json_decode($jsonobj);
+
+echo $obj->Peter; // 35
+echo $obj->Ben; // 37
+echo $obj->Joe; // 43
+
+// Access the values from a PHP associative array
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$arr = json_decode($jsonobj, true);
+
+echo $arr["Peter"]; // 35
+echo $arr["Ben"]; // 37
+echo $arr["Joe"]; // 43
+```
+
+#### Looping Through the Values
+
+```php
+// Loop through the values of a PHP object
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$obj = json_decode($jsonobj);
+
+foreach($obj as $key => $value) {
+  echo $key . " => " . $value . ", ";
+} // Peter => 35, Ben => 37, Joe => 43
+
+// Loop through the values of a PHP associative array
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$arr = json_decode($jsonobj, true);
+
+foreach($arr as $key => $value) {
+  echo $key . " => " . $value . ", ";
+} // Peter => 35, Ben => 37, Joe => 43
+```
