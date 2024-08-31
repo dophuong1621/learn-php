@@ -3225,3 +3225,138 @@ try {
 }
 // Results: Unable to divide. Process complete.
 ```
+
+### OOP - Classes and Objects
+
+#### Define a Class
+
+A class is defined by using the class keyword, followed by the name of the class and a pair of curly braces ({}). All its properties and methods go inside the braces:
+
+```php
+class Fruit {
+  // code goes here...
+}
+```
+
+Below we declare a class named Fruit consisting of two properties ($name and $color) and two methods set_name() and get_name() for setting and getting the $name property:
+
+```php
+class Fruit {
+  // Properties
+  public $name;
+  public $color;
+
+  // Methods
+  function set_name($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+```
+
+### Define Objects
+
+Classes are nothing without objects! We can create multiple objects from a class. Each object has all the properties and methods defined in the class, but they will have different property values.
+
+```php
+class Fruit {
+  // Properties
+  public $name;
+  public $color;
+
+  // Methods
+  function set_name($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+
+$apple = new Fruit();
+$banana = new Fruit();
+$apple->set_name('Apple');
+$banana->set_name('Banana');
+
+echo $apple->get_name();
+echo "<br>";
+echo $banana->get_name();
+```
+
+### The $this Keyword
+
+The $this keyword refers to the current object, and is only available inside methods.
+
+```php
+class Fruit {
+  public $name;
+  function set_name($name) {
+    $this->name = $name;
+  }
+}
+$apple = new Fruit();
+$apple->set_name("Apple");
+
+echo $apple->name;
+```
+
+### Instanceof
+
+You can use the instanceof keyword to check if an object belongs to a specific class:
+
+```php
+$apple = new Fruit();
+var_dump($apple instanceof Fruit);
+```
+
+### OOP - Constructor
+
+#### The __construct Function
+
+A constructor allows you to initialize an object's properties upon creation of the object.
+
+If you create a __construct() function, PHP will automatically call this function when you create an object from a class.
+
+```php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+
+$apple = new Fruit("Apple");
+echo $apple->get_name();
+```
+
+### OOP - Destructor
+
+#### The __destruct Function
+
+A destructor is called when the object is destructed or the script is stopped or exited.
+
+If you create a __destruct() function, PHP will automatically call this function at the end of the script.
+
+```php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color;
+  }
+  function __destruct() {
+    echo "The fruit is {$this->name} and the color is {$this->color}.";
+  }
+}
+
+$apple = new Fruit("Apple", "red");
+```
