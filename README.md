@@ -3360,3 +3360,78 @@ class Fruit {
 
 $apple = new Fruit("Apple", "red");
 ```
+
+### OOP - Access Modifiers
+
+#### Access Modifiers
+
+Properties and methods can have access modifiers which control where they can be accessed.
+
+There are three access modifiers:
+
+* public: The property or method can be accessed from everywhere. This is default
+
+* private: The property or method can ONLY be accessed within the class
+
+* protected: The property or method can be accessed within the class and by classes derived from that class
+
+```php
+// public
+class Car {
+    public $brand;
+
+    public function setBrand($brand) {
+        $this->brand = $brand;
+    }
+
+    public function getBrand() {
+        return $this->brand;
+    }
+}
+
+$car = new Car();
+$car->setBrand("Toyota");
+echo $car->getBrand();
+
+// private
+class Car {
+    private $engineNumber;
+
+    public function setEngineNumber($engineNumber) {
+        $this->engineNumber = $engineNumber;
+    }
+
+    private function getEngineNumber() {
+        return $this->engineNumber;
+    }
+}
+
+$car = new Car();
+$car->setEngineNumber("ABC123");
+// $car->getEngineNumber(); // Lỗi: Không thể truy cập từ bên ngoài class
+
+// protected
+class Car {
+    protected $fuelType;
+
+    protected function setFuelType($fuelType) {
+        $this->fuelType = $fuelType;
+    }
+
+    protected function getFuelType() {
+        return $this->fuelType;
+    }
+}
+
+class ElectricCar extends Car {
+    public function setAndDisplayFuelType($fuelType) {
+        $this->setFuelType($fuelType);
+        echo $this->getFuelType();
+    }
+}
+
+$electricCar = new ElectricCar();
+$electricCar->setAndDisplayFuelType("Electric");
+// $electricCar->getFuelType(); // Lỗi: Không thể truy cập từ bên ngoài class
+
+```
