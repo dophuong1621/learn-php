@@ -3558,3 +3558,76 @@ class Strawberry extends Fruit {
   }
 }
 ```
+
+### OOP - Traits
+
+#### What are Traits?
+
+PHP only supports single inheritance: a child class can inherit only from one single parent.
+
+* Traits are declared with the trait keyword
+
+```php
+// Syntax
+trait TraitName {
+  // some code...
+}
+```
+
+* To use a trait in a class, use the use keyword:
+
+```php
+class MyClass {
+  use TraitName;
+}
+```
+
+Example:
+
+```php
+trait message1 {
+  public function msg1() {
+    echo "OOP is fun! ";
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+$obj = new Welcome();
+$obj->msg1(); // OOP is fun!
+```
+
+#### Using Multiple Traits
+
+```php
+trait message1 {
+  public function msg1() {
+    echo "OOP is fun! ";
+  }
+}
+
+trait message2 {
+  public function msg2() {
+    echo "OOP reduces code duplication!";
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+class Welcome2 {
+  use message1, message2;
+}
+
+$obj = new Welcome();
+$obj->msg1();
+echo "<br>"; // OOP is fun!
+
+$obj2 = new Welcome2();
+$obj2->msg1();
+$obj2->msg2();
+// OOP is fun! OOP reduces code duplication!
+```
