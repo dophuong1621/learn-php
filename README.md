@@ -3631,3 +3631,72 @@ $obj2->msg1();
 $obj2->msg2();
 // OOP is fun! OOP reduces code duplication!
 ```
+
+### OOP - Static Methods
+
+#### Static Methods
+
+Static methods can be called directly - without creating an instance of the class first.
+
+Static methods are declared with the static keyword:
+
+```php
+// Syntax
+class ClassName {
+  public static function staticMethod() {
+    echo "Hello World!";
+  }
+}
+
+// To access a static method use the class name, double colon (::), and the method name:
+ClassName::staticMethod();
+
+// Example
+class greeting {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+// Call static method
+greeting::welcome();
+```
+
+#### More on Static Methods
+
+```php
+class A {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+class B {
+  public function message() {
+    A::welcome();
+  }
+}
+
+$obj = new B();
+echo $obj -> message();
+```
+
+To call a static method from a child class, use the parent keyword inside the child class. Here, the static method can be public or protected.
+
+```php
+class domain {
+  protected static function getWebsiteName() {
+    return "Hello World!";
+  }
+}
+
+class domainW3 extends domain {
+  public $websiteName;
+  public function __construct() {
+    $this->websiteName = parent::getWebsiteName();
+  }
+}
+
+$domainW3 = new domainW3;
+echo $domainW3 -> websiteName; // Hello World!
+```
