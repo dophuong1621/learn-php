@@ -3690,13 +3690,72 @@ class domain {
   }
 }
 
-class domainW3 extends domain {
+class domain2 extends domain {
   public $websiteName;
   public function __construct() {
     $this->websiteName = parent::getWebsiteName();
   }
 }
 
-$domainW3 = new domainW3;
-echo $domainW3 -> websiteName; // Hello World!
+$domain2 = new domain2;
+echo $domain2 -> websiteName; // Hello World!
+```
+
+### OOP - Static Properties
+
+Static properties can be called directly - without creating an instance of a class.
+
+Static properties are declared with the static keyword:
+
+```php
+// Syntax
+class ClassName {
+  public static $staticProp = "Hello";
+}
+
+// To access a static property use the class name, double colon (::), and the property name:
+ClassName::$staticProp;
+
+// Example
+class pi {
+  public static $value = 3.14159;
+}
+
+// Get static property
+echo pi::$value;
+```
+
+#### More on Static Properties
+
+```php
+class pi {
+  public static $value = 3.14159;
+  public function staticValue() {
+    return self::$value;
+  }
+}
+
+$pi = new pi();
+echo $pi->staticValue(); // 3.14159
+```
+
+To call a static property from a child class, use the parent keyword inside the child class:
+
+```php
+class pi {
+  public static $value = 3.14159;
+}
+
+class x extends pi {
+  public function xStatic() {
+    return parent::$value;
+  }
+}
+
+// Get value of static property directly via child class
+echo x::$value; // 3.14159
+
+// or get value of static property via xStatic() method
+$x = new x();
+echo $x->xStatic(); // 3.14159
 ```
