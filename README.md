@@ -3759,3 +3759,56 @@ echo x::$value; // 3.14159
 $x = new x();
 echo $x->xStatic(); // 3.14159
 ```
+
+### Namespaces
+
+#### Declaring a Namespace
+
+Namespaces are declared at the beginning of a file using the namespace keyword:
+
+```php
+// Syntax
+namespace Html;
+
+// Example
+namespace Html;
+class Table {
+  public $title = "";
+  public $numRows = 0;
+  public function message() {
+    echo "<p>Table '{$this->title}' has {$this->numRows} rows.</p>";
+  }
+}
+$table = new Table();
+$table->title = "My table";
+$table->numRows = 5;
+
+$table->message(); // Table 'My table' has 5 rows.
+
+// Declare a namespace called Html inside a namespace called Code
+namespace Code\Html;
+```
+
+#### Using Namespaces
+
+Any code that follows a namespace declaration is operating inside the namespace, so classes that belong to the namespace can be instantiated without any qualifiers. To access classes from outside a namespace, the class needs to have the namespace attached to it.
+
+```php
+// Use classes from the Html namespace
+$table = new Html\Table();
+$row = new Html\Row();
+
+// Use classes from the Html namespace without the need for the Html\qualifier
+namespace Html;
+$table = new Table();
+$row = new Row();
+```
+
+#### Namespace Alias
+
+It can be useful to give a namespace or class an alias to make it easier to write. This is done with the use keyword:
+
+```php
+use Html as H;
+$table = new H\Table();
+```
