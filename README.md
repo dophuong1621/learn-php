@@ -3889,3 +3889,58 @@ function printIterable(iterable $myIterable) {
 $iterator = new MyIterator(["a", "b", "c"]);
 printIterable($iterator);
 ```
+
+### PHP SimpleXML Parser
+
+SimpleXML is a PHP extension that allows us to easily manipulate and get XML data.
+
+SimpleXML is a tree-based parser.
+
+SimpleXML turns an XML document into a data structure you can iterate through like a collection of arrays and objects.
+
+#### SimpleXML - Read From String
+
+The PHP simplexml_load_string() function is used to read XML data from a string.
+
+```php
+libxml_use_internal_errors(true);
+$myXMLData =
+"<?xml version='1.0' encoding='UTF-8'?>
+<document>
+<user>John Doe</wronguser>
+<email>john@example.com</wrongemail>
+</document>";
+
+$xml = simplexml_load_string($myXMLData);
+if ($xml === false) {
+  echo "Failed loading XML: ";
+  foreach(libxml_get_errors() as $error) {
+    echo "<br>", $error->message;
+  }
+} else {
+  print_r($xml);
+}
+
+/*
+Failed loading XML:
+Opening and ending tag mismatch: user line 3 and wronguser
+Opening and ending tag mismatch: email line 4 and wrongemail
+*/
+```
+
+#### SimpleXML - Read From File
+
+The PHP simplexml_load_file() function is used to read XML data from a file
+
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+```php
+$xml=simplexml_load_file("note.xml") or die("Error: Cannot create object");
+print_r($xml); // SimpleXMLElement Object ( [to] => Tove [from] => Jani [heading] => Reminder [body] => Don't forget me this weekend! )
+```
