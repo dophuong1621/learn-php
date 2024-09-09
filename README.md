@@ -3944,3 +3944,79 @@ The PHP simplexml_load_file() function is used to read XML data from a file
 $xml=simplexml_load_file("note.xml") or die("Error: Cannot create object");
 print_r($xml); // SimpleXMLElement Object ( [to] => Tove [from] => Jani [heading] => Reminder [body] => Don't forget me this weekend! )
 ```
+
+### SimpleXML - Get Node/Attribute Values
+
+Get the node values from the "note.xml" file
+
+```php
+// note.xml
+/*
+  <note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+  </note>
+*/
+
+$xml=simplexml_load_file("note.xml") or die("Error: Cannot create object");
+echo $xml->to . "<br>";
+echo $xml->from . "<br>";
+echo $xml->heading . "<br>";
+echo $xml->body;
+
+/* file books.xml
+<?xml version="1.0" encoding="utf-8"?>
+<bookstore>
+  <book category="COOKING">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+  <book category="CHILDREN">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <year>2005</year>
+    <price>29.99</price>
+  </book>
+  <book category="WEB">
+    <title lang="en-us">XQuery Kick Start</title>
+    <author>James McGovern</author>
+    <year>2003</year>
+    <price>49.99</price>
+  </book>
+  <book category="WEB">
+    <title lang="en-us">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>39.95</price>
+  </book>
+</bookstore>
+*/
+
+$xml=simplexml_load_file("books.xml") or die("Error: Cannot create object");
+
+// Get Node Values of Specific Elements
+echo $xml->book[0]->title . "<br>";
+echo $xml->book[1]->title;
+
+// Get Node Values - Loop
+foreach($xml->children() as $books) {
+  echo $books->title . ", ";
+  echo $books->author . ", ";
+  echo $books->year . ", ";
+  echo $books->price . "<br>";
+}
+
+// Get Attribute Values
+echo $xml->book[0]['category'] . "<br>";
+echo $xml->book[1]->title['lang'];
+
+// Get Attribute Values - Loop
+foreach($xml->children() as $books) {
+  echo $books->title['lang'];
+  echo "<br>";
+}
+```
