@@ -4105,3 +4105,33 @@ Example explained
 * In case of an error, add xml_error_string() function to convert an XML error to a textual description
 
 * Call the xml_parser_free() function to release the memory allocated with the xml_parser_create() function
+
+### XML DOM Parser
+
+The built-in DOM parser makes it possible to process XML documents in PHP.
+
+<!-- note.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+
+```php
+// Load and Output XML
+$xmlDoc = new DOMDocument();
+$xmlDoc->load("note.xml");
+
+print $xmlDoc->saveXML();
+
+// Looping through XML
+$xmlDoc = new DOMDocument();
+$xmlDoc->load("note.xml");
+
+$x = $xmlDoc->documentElement;
+foreach ($x->childNodes AS $item) {
+  print $item->nodeName . " = " . $item->nodeValue . "<br>";
+}
+```
